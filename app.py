@@ -100,5 +100,13 @@ def update_recipe(id):
 
     return jsonify(recipe_data),200
 
+@app.route('/recipe/<int:id>',methods=['DELETE'])
+def delete_recipe(id):
+    recipe_to_delete=Recipe.get_by_id(id)
+
+    recipe_to_delete.delete()
+
+    return jsonify({"message":"Deleted"}),204
+
 if __name__ == '__main__':
     app.run(debug=True)
