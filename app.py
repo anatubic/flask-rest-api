@@ -108,5 +108,13 @@ def delete_recipe(id):
 
     return jsonify({"message":"Deleted"}),204
 
+@app.errorhandler(404)
+def not_found(error):
+    return jsonify({"message":"Not found"}),404
+
+@app.errorhandler(500)
+def internal_server(error):
+    return jsonify({"message":"Error"}),500
+
 if __name__ == '__main__':
     app.run(debug=True)
